@@ -19,17 +19,17 @@ const setupChatSocket = (io) => {
   });
 
   io.on("connection", (socket) => {
-    console.log(`User connected: ${socket.userId}`);
+  
 
     socket.on("joinChat", (otherUserId) => {
       if (!otherUserId) return;
       const roomName = [socket.userId, otherUserId?.chatId].sort().join("-");
       socket.join(roomName);
-      console.log(`User ${socket.userId} joined room: ${roomName}`);
+      
     });
 
     socket.on("sendMessage", async ({ receiverId, content }) => {
-      console.log("Message received → To:", receiverId, "| Content:", content);
+    
 
       if (!receiverId || !content?.trim()) {
         return socket.emit("error", { message: "Invalid message data" });
@@ -58,7 +58,7 @@ const setupChatSocket = (io) => {
 
         socket.emit("messageSent", messageToSend);
 
-        console.log("Message saved & sent successfully");
+    
       } catch (err) {
         console.error("Error saving message:", err.message);
         socket.emit("error", { message: "Failed to send message" });
