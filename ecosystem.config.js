@@ -3,9 +3,7 @@ module.exports = {
     {
       name: "chat-app",
       script: "server.js",
-      instances: "max",
-      exec_mode: "cluster",
-      watch: false,
+      watch: true,
 
       env_development: {
         NODE_ENV: "development",
@@ -28,20 +26,10 @@ module.exports = {
         MONGO_URI:
           "mongodb+srv://arpitkhandelwal_db_user:mSSAp6svVcTVwdVY@chatcluster.68s0tan.mongodb.net/production-chat-db?retryWrites=true&w=majority",
         JWT_SECRET: "fsm",
-        instances: "max",
-        exec_mode: "cluster",
-        watch: false,
-        max_memory_restart: "500M",
-        out_file: "/var/log/chat-app/prod-out.log",
-        error_file: "/var/log/chat-app/prod-error.log",
-        log_date_format: "YYYY-MM-DD HH:mm:ss Z",
+    
       },
 
-      autorestart: true,
-      max_restarts: 10,
-      restart_delay: 4000,
-      merge_logs: true,
-      namespace: "chat",
+  
     },
   ],
 };
