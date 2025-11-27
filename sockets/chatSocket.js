@@ -4,15 +4,17 @@ const jwt = require("jsonwebtoken");
 // const { sendNotification } = require("../firebase/sendNotifiction");
 
 const setupChatSocket = (io) => {
+  console.log("middleware");
   io.use((socket, next) => {
     const token = socket.handshake.auth.token;
-
+    console.log("token",token);
     if (!token) {
       return next(new Error("Authentication error: No token provided"));
     }
-
+  
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log("token decoded",decoded);
       socket.userId = decoded.id;
       next();
     } catch (err) {
@@ -21,6 +23,7 @@ const setupChatSocket = (io) => {
   });
 
   io.on("connection", (socket) => {
+  
     console.log("connection")
     socket.on("joinChat", (otherUserId) => {
       if (!otherUserId) return;
