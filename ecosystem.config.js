@@ -9,14 +9,14 @@ module.exports = {
         NODE_ENV: "development",
         PORT: 3000,
         MONGO_URI:
-          "mongodb+srv://arpitkhandelwal_db_user:mSSAp6svVcTVwdVY@chatcluster.68s0tan.mongodb.net/development-chat-db?retryWrites=true&w=majority",
+          "mongodb+srv://hardikkhurana_db_user:kVjmZLi9bSzgYVDS@cluster0.ckgioeb.mongodb.net/development-chat-db?retryWrites=true&w=majority",
         JWT_SECRET: "fsm",
       },
       env_staging: {
         NODE_ENV: "staging",
         PORT: 3001,
         MONGO_URI:
-          "mongodb+srv://arpitkhandelwal_db_user:mSSAp6svVcTVwdVY@chatcluster.68s0tan.mongodb.net/staging-chat-db?retryWrites=true&w=majority",
+          "mongodb+srv://hardikkhurana_db_user:kVjmZLi9bSzgYVDS@cluster0.ckgioeb.mongodb.net/staging-chat-db?retryWrites=true&w=majority",
         JWT_SECRET: "fsm",
       },
 
@@ -24,7 +24,7 @@ module.exports = {
         NODE_ENV: "production",
         PORT: 3000,
         MONGO_URI:
-          "mongodb+srv://arpitkhandelwal_db_user:mSSAp6svVcTVwdVY@chatcluster.68s0tan.mongodb.net/production-chat-db?retryWrites=true&w=majority",
+          "mongodb+srv://hardikkhurana_db_user:kVjmZLi9bSzgYVDS@cluster0.ckgioeb.mongodb.net/production-chat-db?retryWrites=true&w=majority",
         JWT_SECRET: "fsm",
     
       },
