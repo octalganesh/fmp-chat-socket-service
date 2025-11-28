@@ -14,15 +14,15 @@ pipeline {
             }
         }
 
-        stage('Deploy to Staging') {
+        stage('Deploy to uat') {
             steps {
                 script {
 
-                    if (env.BRANCH_NAME == 'staging') {
+                    if (env.BRANCH_NAME == 'uat') {
                         echo "🚀 Deploying Node App for branch: ${env.BRANCH_NAME}"
 
                         withCredentials([usernamePassword(
-                            credentialsId: '46957a41-b9d8-40ec-8b21-3b41ecca86b9',
+                            credentialsId: 'b16783c1-68dc-4c1c-a21a-3cb195001b91',
                             usernameVariable: 'DEPLOY_USER',
                             passwordVariable: 'DEPLOY_PASS'
                         )]) {
@@ -31,7 +31,7 @@ pipeline {
                                 #!/bin/bash
                                 set -e
 
-                                DEPLOY_HOST=192.168.1.38
+                                DEPLOY_HOST=192.168.1.44
                                 DEPLOY_DIR=/opt/apps/chat-app
 
                                 echo "📁 Creating directory on remote server..."
