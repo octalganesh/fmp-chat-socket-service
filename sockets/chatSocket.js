@@ -28,7 +28,8 @@ const setupChatSocket = (io) => {
     socket.on("joinChat", (otherUserId) => {
       if (!otherUserId) return;
       const roomName = [socket.userId, otherUserId?.chatId].sort().join("-");
-      console.log(roomName)
+      
+         console.log("room1",roomName)
       socket.join(roomName);
     });
 
@@ -60,6 +61,8 @@ const setupChatSocket = (io) => {
         // console.log(messageToSend)
 
         io.to(roomName).emit("receiveMessage", messageToSend);
+
+        console.log("room2",roomName)
 
         // const receiverToken =
         //   "daZI2WYdLUJ1j9oigf1RJH:APA91bGUolhnBaqSoVmdxijeeWiGxkmA0Yjl0iIJSYWbcXNvHpSDif6M2G1lH-rETIXkIcyQwYw8EZzvHtPGLJfkfEEgsu6dUR1TimLWbezb9seXoeCcddY";
