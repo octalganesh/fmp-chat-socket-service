@@ -27,9 +27,7 @@ module.exports = {
           "mongodb+srv://arpitkhandelwal_db_user:mSSAp6svVcTVwdVY@chatcluster.68s0tan.mongodb.net/production-chat-db?retryWrites=true&w=majority",
         JWT_SECRET: "fsm",
     
-      },
-
-  
+      }, 
     },
   ],
 };

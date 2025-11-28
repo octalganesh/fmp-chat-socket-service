@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 // const { sendNotification } = require("../firebase/sendNotifiction");
 
 const setupChatSocket = (io) => {
+  
   io.use((socket, next) => {
     const token = socket.handshake.auth.token;
 
