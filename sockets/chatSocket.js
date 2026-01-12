@@ -4,17 +4,17 @@ const jwt = require("jsonwebtoken");
 // const { sendNotification } = require("../firebase/sendNotifiction");
 
 const setupChatSocket = (io) => {
-  
+
   io.use((socket, next) => {
     const token = socket.handshake.auth.token;
-    console.log("token",token);
+    console.log("token", token);
     if (!token) {
       return next(new Error("Authentication error: No token provided"));
     }
-  
+
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log("token decoded",decoded);
+      console.log("token decoded", decoded);
       socket.userId = decoded.id;
       next();
     } catch (err) {
@@ -22,18 +22,18 @@ const setupChatSocket = (io) => {
     }
   });
 
-  io.on("connection", (socket) => {
-  
+  io.on("connection", (socket) => { 
+    console.log("sasadsada",socket);
     console.log("connection")
     socket.on("joinChat", (otherUserId) => {
       if (!otherUserId) return;
       const roomName = [socket.userId, otherUserId?.chatId].sort().join("-");
-      
-         console.log("room1",roomName)
+
+      console.log("room1", roomName)
       socket.join(roomName);
     });
 
-    socket.on("sendMessage", async ({ receiverId, content }) => {
+    socket.on("sendMessage", async ({ receiverId, content,taskId }) => {
       if (!receiverId || !content?.trim()) {
         return socket.emit("error", { message: "Invalid message data" });
       }
@@ -41,7 +41,7 @@ const setupChatSocket = (io) => {
       try {
         const message = new Message({
           sender: socket.userId,
-          taskId:socket.taskId,
+          taskId: socket.taskId || taskId,
           receiver: receiverId,
           content: content.trim(),
         });
@@ -54,7 +54,7 @@ const setupChatSocket = (io) => {
           _id: savedMessage._id,
           sender: savedMessage.sender,
           receiver: savedMessage.receiver,
-          taskId:savedMessage.taskId,
+          taskId: savedMessage.taskId,
           content: savedMessage.content,
           createdAt: savedMessage.createdAt,
         };
@@ -64,7 +64,7 @@ const setupChatSocket = (io) => {
 
         io.to(roomName).emit("receiveMessage", messageToSend);
 
-        console.log("room2",roomName)
+        console.log("room2", roomName)
 
         // const receiverToken =
         //   "daZI2WYdLUJ1j9oigf1RJH:APA91bGUolhnBaqSoVmdxijeeWiGxkmA0Yjl0iIJSYWbcXNvHpSDif6M2G1lH-rETIXkIcyQwYw8EZzvHtPGLJfkfEEgsu6dUR1TimLWbezb9seXoeCcddY";
