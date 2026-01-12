@@ -41,6 +41,7 @@ const setupChatSocket = (io) => {
       try {
         const message = new Message({
           sender: socket.userId,
+          taskId:socket.taskId,
           receiver: receiverId,
           content: content.trim(),
         });
@@ -53,6 +54,7 @@ const setupChatSocket = (io) => {
           _id: savedMessage._id,
           sender: savedMessage.sender,
           receiver: savedMessage.receiver,
+          taskId:savedMessage.taskId,
           content: savedMessage.content,
           createdAt: savedMessage.createdAt,
         };
