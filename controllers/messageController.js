@@ -3,14 +3,16 @@ const Message = require("../models/message");
 const getChatHistory = async (req, res) => {
 
   const { otherUserId, taskId } = req.params;
+  console.log("task id", taskId);
   const userId = req.user.id;
   try {
     const messages = await Message.find({
       $or: [
-        { sender: userId, receiver: otherUserId,taskId:taskId },
-        { sender: otherUserId, receiver: userId,taskId:taskId },
+        { sender: userId, receiver: otherUserId, taskId: taskId },
+        { sender: otherUserId, receiver: userId, taskId: taskId },
       ],
     }).sort({ createdAt: 1 });
+    console.log("messages", messages);
     // .populate("sender", "username")
     // .populate("receiver", "username");
     res.json(messages);
