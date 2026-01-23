@@ -4,7 +4,7 @@ const { getChatHistory, chatPartners } = require('../controllers/messageControll
 
 const router = express.Router();
 
-router.get('/:otherUserId', protect, getChatHistory);
+router.get('/:otherUserId/:taskId', protect, getChatHistory);
 router.get('/chat-partners',protect, chatPartners)
 
 module.exports = router;

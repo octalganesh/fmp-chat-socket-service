@@ -13,6 +13,10 @@ const messageSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    taskId: {
+      type: String
+
+    },
     content: {
       type: String,
       required: true,
